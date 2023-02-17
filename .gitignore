@@ -1,0 +1,6 @@
+# Ignore yaml files created by the compare script
+*.yaml
+*.yml
+
+# Ignore .envrc files
+*.envrc
