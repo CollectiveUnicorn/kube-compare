@@ -17,7 +17,7 @@ To dump & compare specific types of resources:
 
 For nicer output, [dyff](https://github.com/homeport/dyff) can be used. 
 
-![dyff image](https://raw.githubusercontent.com/homeport/dyff/main/.docs/dyff-between-git-commits-example.png)
+![dyff image](https://raw.githubusercontent.com/homeport/dyff/main/.docs/dyff-between-kubectl-diff.png)
 
 Once dyff is installed run the following command to use it instead of the default `kubectl diff`: 
 ``` shell 
