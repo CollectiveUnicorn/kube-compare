@@ -12,7 +12,7 @@ To dump & compare all resources in the cluster:
 To dump & compare specific types of resources:
 ``` shell
 ./kubecompare dump -f 17-feb-2023-dump-pods-ss-ds -r "pods statefulset daemonset"
-./kubecompare compare -f 17-feb-2023-dump
+./kubecompare compare -f 17-feb-2023-dump-pods-ss-ds
 ```
 
 # Updating
