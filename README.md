@@ -19,7 +19,7 @@ For nicer output, [dyff](https://github.com/homeport/dyff) can be used.
 
 ![dyff image](https://raw.githubusercontent.com/homeport/dyff/main/.docs/dyff-between-git-commits-example.png)
 
-Once dyff is installed run to use it instead of the default `kubectl diff`: 
+Once dyff is installed run the following command to use it instead of the default `kubectl diff`: 
 ``` shell 
 export KUBECTL_EXTERNAL_DIFF="dyff between --omit-header --set-exit-code"
 ```
