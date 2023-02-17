@@ -16,4 +16,5 @@ To dump & compare specific types of resources:
 ```
 
 # Updating
-Shell script generated using [Bashly](https://bashly.dannyb.co/) yaml file contained in the `src` folder. Run `bashly generate` to update the shell scripts
+Shell script generated using [Bashly](https://bashly.dannyb.co/) yaml file contained in the `src` folder. 
+Run `bashly generate` to update the shell scripts when the `bashly.yml` file is updated.

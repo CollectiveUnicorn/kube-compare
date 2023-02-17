@@ -96,7 +96,7 @@ kubecompare_dump_usage() {
     # :command.usage_examples
     printf "%s\n" "Examples:"
     printf "  ./kubecompare dump -f 17-feb-2023-dump-all\n"
-    printf "  ./kubecompare dump -f 17-feb-2023-dump-pods-ss-ds -r pods statefulset\n  daemonset\n"
+    printf "  ./kubecompare dump -f 17-feb-2023-dump-pods-ss-ds -r \"pods statefulset\n  daemonset\"\n"
     echo
 
   fi
@@ -132,6 +132,11 @@ kubecompare_compare_usage() {
     printf "    Folder with files to compare against\n"
     echo
 
+    # :flag.usage
+    printf "  %s\n" "--quiet, -q"
+    printf "    Do not output when differences are not found\n"
+    echo
+
     # :command.usage_fixed_flags
     printf "  %s\n" "--help, -h"
     printf "    Show this help\n"
@@ -140,6 +145,7 @@ kubecompare_compare_usage() {
     # :command.usage_examples
     printf "%s\n" "Examples:"
     printf "  ./kubecompare compare -f 17-feb-2023-dump-all\n"
+    printf "  ./kubecompare compare -f 17-feb-2023-dump-all -q\n"
     echo
 
   fi
@@ -228,11 +234,14 @@ kubecompare_compare_command() {
   #!/usr/bin/env bash
 
   folder=${args[--folder]}
+  quiet=${args[--quiet]}
 
   shopt -s globstar # Allows the * lookup to work with bash
   for f in "$folder"/**/*.yaml; do
     if kubectl diff -f "$f"; then
-      echo "No changes detected for $(basename "$f")"
+      if [ -z "$quiet" ]; then
+        echo "No changes detected for $(basename "$f")"
+      fi
     fi
   done
 }
@@ -453,6 +462,14 @@ kubecompare_compare_parse_requirements() {
           printf "%s\n" "--folder requires an argument: --folder, -f FOLDER" >&2
           exit 1
         fi
+        ;;
+
+      # :flag.case
+      --quiet | -q)
+
+        # :flag.case_no_arg
+        args['--quiet']=1
+        shift
         ;;
 
       -?*)
