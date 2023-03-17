@@ -1,0 +1,50 @@
+name: kubecompare
+help: Take snapshots of your K8s cluster yaml and compare them later on
+version: 0.0.1
+
+commands:
+- name: dump
+  alias: d
+  help: Dump a cluster into a collection of yaml files
+
+  flags:
+    - long: --folder
+      short: -f
+      arg: folder
+      help: "Folder to store the dump in"
+      required: true
+    - long: --resources
+      short: -r
+      arg: resources
+      help: "Cluster resources to dump (default: all cluster resources)"
+      required: false
+
+  dependencies:
+    kubectl: Visit (https://kubernetes.io/docs/tasks/tools/) for more information
+    jq: Visit (https://stedolan.github.io/jq/) for more information
+
+  examples:
+  - "./kubecompare dump -f 17-feb-2023-dump-all"
+  - "./kubecompare dump -f 17-feb-2023-dump-pods-ss-ds -r \"pods statefulset daemonset\""
+
+- name: compare
+  alias: c
+  help: Compare a local kubedump (folder with yaml files) to the remote cluster
+
+  flags:
+  - long: --folder
+    short: -f
+    arg: folder
+    help: "Folder with files to compare against"
+    required: true
+  - long: --quiet
+    short: -q
+    help: "Do not output when differences are not found"
+    required: false
+
+  dependencies:
+    kubectl: Visit (https://kubernetes.io/docs/tasks/tools/) for more information
+
+  examples:
+    - "./kubecompare compare -f 17-feb-2023-dump-all"
+    - "./kubecompare compare -f 17-feb-2023-dump-all -q"

@@ -2,5 +2,8 @@
 *.yaml
 *.yml
 
+# Do not ignore this yaml file
+!src/bashly.yml
+
 # Ignore .envrc files
 *.envrc
